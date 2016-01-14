@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ["noteContentFactory"])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,7 +41,10 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('noteListCtrl', function($scope) {
+.controller('noteListCtrl', function($scope, noteContentFactory) {
+  var newContent = noteContentFactory.getContent();
+
+  console.log("newContent", newContent);
 
   var testNotes = {
     "untitled1": {
@@ -71,15 +74,19 @@ angular.module('starter.controllers', [])
   // ];
 })
 
-.controller('noteCtrl', function($scope, $stateParams) {
+.controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
+
   $scope.SaveNote = function (noteText) {
     var noteInput = noteText;
 
     console.log("noteInput", noteInput);
     console.log("button works");
 
+
     //setting the local storage with history object.
-    localStorage.setItem('tempNote', JSON.stringify(noteInput));
+    // localStorage.setItem('tempNote', JSON.stringify(testNotes));
+
+    noteContentFactory.addContent(noteInput);
 
   }
 
