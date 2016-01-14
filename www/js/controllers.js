@@ -13,7 +13,7 @@ angular.module('starter.controllers', [])
   $scope.loginData = {};
 
   // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/playlists.html', {
+  $ionicModal.fromTemplateUrl('templates/noteList.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
@@ -41,8 +41,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
+.controller('noteListCtrl', function($scope) {
+  $scope.noteListObject = [
     { title: 'Reggae', id: 1 },
     { title: 'Chill', id: 2 },
     { title: 'Dubstep', id: 3 },
