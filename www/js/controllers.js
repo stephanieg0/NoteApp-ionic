@@ -52,5 +52,17 @@ angular.module('starter.controllers', [])
   ];
 })
 
-.controller('PlaylistCtrl', function($scope, $stateParams) {
+.controller('noteCtrl', function($scope, $stateParams) {
+  $scope.SaveNote = function (noteText) {
+    var noteInput = noteText;
+
+    console.log("noteInput", noteInput);
+    console.log("button works");
+
+    //setting the local storage with history object.
+    localStorage.setItem('tempNote', JSON.stringify(noteInput));
+
+  }
+
+
 });

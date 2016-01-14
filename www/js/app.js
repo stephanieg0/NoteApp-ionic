@@ -48,7 +48,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     views: {
       'menuContent': {
         templateUrl: 'templates/note.html',
-        controller: 'noteListCtrl'
+        controller: 'noteCtrl'
       }
     }
   });
