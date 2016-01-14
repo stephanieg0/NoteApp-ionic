@@ -42,14 +42,33 @@ angular.module('starter.controllers', [])
 })
 
 .controller('noteListCtrl', function($scope) {
-  $scope.noteListObject = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+
+  var testNotes = {
+    "untitled1": {
+      title: "Untitled 1",
+      content: "sample content"
+    },
+    "untitled2": {
+      title: "Untitled 2",
+      content: "sample content 2"
+    }
+  }
+
+  localStorage.setItem("notes", JSON.stringify(testNotes));
+
+  var notes = JSON.parse(localStorage.getItem("notes" || {}));
+  console.log("notes:", notes);
+
+  $scope.noteListObject = notes;
+
+  // $scope.noteListObject = [
+  //   { title: 'Reggae', id: 1 },
+  //   { title: 'Chill', id: 2 },
+  //   { title: 'Dubstep', id: 3 },
+  //   { title: 'Indie', id: 4 },
+  //   { title: 'Rap', id: 5 },
+  //   { title: 'Cowbell', id: 6 }
+  // ];
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
