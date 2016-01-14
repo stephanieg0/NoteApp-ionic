@@ -66,7 +66,8 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
 
-  $stateParams.noteListid
+  $scope.note = noteContentFactory.getNote($stateParams.noteListid);
+  console.log("$scope.note", $scope.note);
 
   $scope.SaveNote = function (noteText) {
     var noteInput = noteText;

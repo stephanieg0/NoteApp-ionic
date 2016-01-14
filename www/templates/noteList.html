@@ -1,8 +1,8 @@
 <ion-view view-title="noteList">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="note in noteListObject" href="#/app/note/{{note.id}}">
-        {{note.title}}
+      <ion-item ng-repeat="(key, value) in noteListObject" href="#/app/note/{{key}}">
+        {{value.title}}
       </ion-content>
       </ion-item>
     </ion-list>

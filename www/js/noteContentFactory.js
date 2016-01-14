@@ -18,6 +18,9 @@ angular.module('noteContentFactory', [])
     },
     getAllNotes: function() {
       return notes;
+    },
+    getNote: function(uniqueKey) {
+      return notes[uniqueKey];
     }
 
   };
