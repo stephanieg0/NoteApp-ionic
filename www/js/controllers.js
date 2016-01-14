@@ -44,37 +44,29 @@ angular.module('starter.controllers', ["noteContentFactory"])
 .controller('noteListCtrl', function($scope, noteContentFactory) {
   var newContent = noteContentFactory.getContent();
 
-  console.log("newContent", newContent);
+  //console.log("newContent", newContent);
 
-  var testNotes = {
-    "untitled1": {
-      title: "Untitled 1",
-      content: "sample content"
-    },
-    "untitled2": {
-      title: "Untitled 2",
-      content: "sample content 2"
-    }
-  }
+  // var testNotes = {
+  //   "untitled1": {
+  //     title: "Untitled 1",
+  //     content: "sample content"
+  //   },
+  //   "untitled2": {
+  //     title: "Untitled 2",
+  //     content: "sample content 2"
+  //   }
+  // }
 
-  localStorage.setItem("notes", JSON.stringify(testNotes));
+  //localStorage.setItem("notes", JSON.stringify(testNotes));
 
-  var notes = JSON.parse(localStorage.getItem("notes" || {}));
-  console.log("notes:", notes);
+  $scope.noteListObject = noteContentFactory.getAllNotes();
+  console.log("$scope.noteListObject", $scope.noteListObject);
 
-  $scope.noteListObject = notes;
-
-  // $scope.noteListObject = [
-  //   { title: 'Reggae', id: 1 },
-  //   { title: 'Chill', id: 2 },
-  //   { title: 'Dubstep', id: 3 },
-  //   { title: 'Indie', id: 4 },
-  //   { title: 'Rap', id: 5 },
-  //   { title: 'Cowbell', id: 6 }
-  // ];
 })
 
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
+
+  $stateParams.noteListid
 
   $scope.SaveNote = function (noteText) {
     var noteInput = noteText;
