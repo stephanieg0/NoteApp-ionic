@@ -3,8 +3,8 @@ Ionic App Base
 
 Project uses node uuid to create unique id's for each note. Do the following to install note uuid plugin:
 
-1) run: npm install node-uuid --save
-1) include the following script tag above the ionic.bundle.js script tag in your index.html:
+1. run: npm install node-uuid --save
+1. include the following script tag above the ionic.bundle.js script tag in your index.html:
   ```<script src="lib/node-uuid/uuid.js"></script>```
 
 A starting project for Ionic that optionally supports using custom SCSS.
