@@ -54,8 +54,8 @@ angular.module('starter.controllers', ["noteContentFactory"])
     var uniqueId = uuid.v1();
     $scope.noteListObject[uniqueId] =
     {
-      title: "Untitled",
-      content: "test content"
+      title: "whatchamacallit",
+      content: ""
     }
 
     //creates new note object in local storage:
