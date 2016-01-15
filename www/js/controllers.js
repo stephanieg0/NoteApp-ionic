@@ -52,18 +52,15 @@ angular.module('starter.controllers', ["noteContentFactory"])
     var uniqueId = uuid.v1();
     $scope.noteListObject[uniqueId] =
     {
-      title: "Untitled",
-      content: "test content"
+      title: "",
+      content: ""
     }
 
     //creates new note object in local storage:
     localStorage.setItem("notes", JSON.stringify($scope.noteListObject));
 
+    //after creating new note, load sigle note partial using new note's unique id:
     $state.go('app.single', {url: "#/app/note/", noteListid: uniqueId});
-
-    // $location.path("#/app/note/" + uniqueId);
-        //$scope.$apply();
-
   };
 
   //delete note:
@@ -76,12 +73,21 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
   }
 
+  // $scope.showUserTitle = function(title) {
+  //   console.log("title argument:", title);
+  //   if (title !== "") {
+  //     console.log("no title!");
+  //     return true;
+  //   };
+  // }
+
 })
 
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
 
   //retrieving unique note id from $stateParams object specified in app.js:
   var uniqueNoteId = $stateParams.noteListid;
+  console.log("new note's unique ID:", uniqueNoteId);
   //using unique note id to retrieve complete note object
   $scope.note = noteContentFactory.getNote($stateParams.noteListid);
   console.log("$scope.note", $scope.note);

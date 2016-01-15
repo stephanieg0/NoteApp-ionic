@@ -15,6 +15,7 @@ angular.module('noteContentFactory', [])
       return notes;
     },
     getNote: function(uniqueKey) {
+      notes = getNotesObj();
       return notes[uniqueKey];
     },
     updateNote: function(uniqueKey, updatedNoteObj) {

@@ -5,7 +5,7 @@
     <a class="button button-clear" href="#/app/deleteNotes">Delete Notes</a> <!--loads delete notes partial on click -->
   </div>
     <ion-list>
-      <ion-item ng-repeat="(key, value) in noteListObject" href="#/app/note/{{key}}"> <!-- saves unique note id to be stored in $stateParams as noteListid -->
+      <ion-item ng-repeat="(key, value) in noteListObject" href="#/app/note/{{key}}" placeholder="Untitled" ng-model="noteText"> <!-- saves unique note id to be stored in $stateParams as noteListid -->
         {{value.title}}
       </ion-content>
       </ion-item>
