@@ -57,29 +57,65 @@ angular.module('starter.controllers', ["noteContentFactory"])
   //   }
   // }
 
-  //localStorage.setItem("notes", JSON.stringify(testNotes));
+  // localStorage.setItem("notes", JSON.stringify(testNotes));
 
   $scope.noteListObject = noteContentFactory.getAllNotes();
   console.log("$scope.noteListObject", $scope.noteListObject);
 
 })
 
+//Single Note Section
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
 
   $scope.note = noteContentFactory.getNote($stateParams.noteListid);
   console.log("$scope.note", $scope.note);
 
-  $scope.SaveNote = function (noteText) {
-    var noteInput = noteText;
+  var notesHistory = JSON.parse(localStorage.getItem('searchHistory')) || [];
 
-    console.log("noteInput", noteInput);
-    console.log("button works");
+  //variable to count
+  var count = 0;
+  var id = "";
+  //Making ID
+  makeid = function () {
+
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        for( var i=0; i < 5; i++ )
+            id += possible.charAt(Math.floor(Math.random() * possible.length));
+          console.log("id", id);
+        return id;
+    };
 
 
+  //Save button to add to history
+  $scope.SaveNote = function () {
+    makeid();
+    var inputTitle = document.getElementById('noteTitle').value;
+    var inputContent = document.getElementById('noteContent').value;
+    console.log("inputTitle", inputTitle);
+    console.log("inputContent", inputContent);
+    //count up everytime function runs.
+    count++;
+
+    if (inputTitle === "" || inputTitle === undefined){
+      inputTitle = "Untitled" + count;
+
+    }
+
+    notesHistory.push({
+      "title": inputTitle,
+      "content": inputContent,
+      "id": id
+    });
+    console.log("notesHistory", notesHistory);
     //setting the local storage with history object.
-    // localStorage.setItem('tempNote', JSON.stringify(testNotes));
+    localStorage.setItem('notes', JSON.stringify(notesHistory));
 
-    noteContentFactory.addContent(noteInput);
+
+
+
+    //noteContentFactory.addContent(noteInput);
+    noteContentFactory.getNote(noteInput)
 
   }
 
