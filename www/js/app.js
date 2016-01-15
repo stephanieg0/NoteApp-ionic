@@ -42,13 +42,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'noteContentFactory']
         }
       }
     })
+    .state('app.deleteNotes', {
+      url: '/deleteNotes',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/deleteNotes.html',
+          controller: 'noteListCtrl'
+        }
+      }
+    })
 
   .state('app.single', {
     url: '/note/:noteListid',
     views: {
       'menuContent': {
-        templateUrl: 'templates/note.html',
-        controller: 'noteCtrl'
+        templateUrl: 'templates/note.html'
+        //controller: 'noteCtrl'
       }
     }
   });

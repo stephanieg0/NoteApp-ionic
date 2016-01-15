@@ -44,52 +44,54 @@ angular.module('starter.controllers', ["noteContentFactory"])
 .controller('noteListCtrl', function($scope, noteContentFactory) {
   var newContent = noteContentFactory.getContent();
 
-  console.log("newContent", newContent);
 
-  var testNotes = {
-    "untitled1": {
-      title: "Untitled 1",
-      content: "sample content"
-    },
-    "untitled2": {
-      title: "Untitled 2",
-      content: "sample content 2"
+  $scope.noteListObject = noteContentFactory.getAllNotes();
+  console.log("$scope.noteListObject", $scope.noteListObject);
+
+  $scope.addNote = function() {
+    console.log("you clicked on add note!");
+    console.log("uuid.v1:", uuid.v1());
+    var uniqueId = uuid.v1();
+    $scope.noteListObject[uniqueId] =
+    {
+      title: "Untitled",
+      content: "test content"
     }
+
+    //creates new note object in local storage:
+    localStorage.setItem("notes", JSON.stringify($scope.noteListObject));
+
+  };
+
+  //delete note:
+
+  $scope.deleteNote = function() {
+    console.log("you clicked delete note!");
+    console.log("event.target.id", event.target.id);
+    var noteId = event.target.id;
+    delete $scope.noteListObject[noteId];
+    noteContentFactory.setNotes($scope.noteListObject);
+
   }
 
-  localStorage.setItem("notes", JSON.stringify(testNotes));
-
-  var notes = JSON.parse(localStorage.getItem("notes" || {}));
-  console.log("notes:", notes);
-
-  $scope.noteListObject = notes;
-
-  // $scope.noteListObject = [
-  //   { title: 'Reggae', id: 1 },
-  //   { title: 'Chill', id: 2 },
-  //   { title: 'Dubstep', id: 3 },
-  //   { title: 'Indie', id: 4 },
-  //   { title: 'Rap', id: 5 },
-  //   { title: 'Cowbell', id: 6 }
-  // ];
-})
+})//end of controller.
 
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
-
-  $scope.SaveNote = function (noteText, title) {
-    var noteInput = noteText;
-    var noteTitle = title;
-    console.log("noteInput", noteInput);
-    console.log("button works");
-    console.log("noteTitle", noteTitle);
+  var uniqueNoteId = $stateParams.noteListid;
+  $scope.note = noteContentFactory.getNote($stateParams.noteListid);
+  console.log("$scope.note", $scope.note);
 
 
-    //setting the local storage with history object.
-    // localStorage.setItem('tempNote', JSON.stringify(testNotes));
+  $scope.noteText = $scope.note.content;
 
-    noteContentFactory.addContent(noteInput);
 
-  }
+  $scope.$watch('noteText', function() {
+    console.log("content changed!");
+    console.log("noteText:", $scope.noteText);
+    $scope.note.content = $scope.noteText;
+    console.log("updated note object:", $scope.note);
+    noteContentFactory.updateNote(uniqueNoteId, $scope.note);
+  }, true)
 
 
 });

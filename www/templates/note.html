@@ -1,10 +1,10 @@
 <ion-view view-title="note">
-  <ion-content>
-    <h3>Note Title</h3>
+  <ion-content ng-controller="noteCtrl">
+    <h3>{{note.title}}</h3>
     <form>
-      <input placeholder="Note Title" id="noteTitle" ng-model="title">
-      <textarea rows="20" cols="50" id="noteContent" placeholder="Text Area" ng-model="noteText"></textarea>
+      <textarea rows="20" cols="50" id="noteContent" ng-model="noteText" ng-keypress="saveContent()"></textarea>
     </form>
-    <button id="save-note" ng-click="SaveNote(noteText, noteTitle)">save note</button>
+    <textarea ng-model="testTextArea">{{testTextArea}}</textarea>
+    <!-- <button id="save-note" ng-click="SaveNoteContent(noteText)">save note</button> -->
   </ion-content>
 </ion-view>
