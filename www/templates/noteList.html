@@ -1,15 +1,12 @@
 <ion-view view-title="Notes">
-  <ion-content>
+  <ion-content class='has-header'>
   <div class="row">
     <button class="button button-clear" ng-click="addNote()">+</button>
-    <!-- <button class="button button-clear">Delete Notes</button> -->
-    <a class="button button-clear" href="#/app/deleteNotes">Delete Notes</a>
+    <a class="button button-clear" href="#/app/deleteNotes">Delete Notes</a> <!--loads delete notes partial on click -->
   </div>
     <ion-list>
-      <ion-item ng-repeat="(key, value) in noteListObject" href="#/app/note/{{key}}">
+      <ion-item ng-repeat="(key, value) in noteListObject" href="#/app/note/{{key}}"> <!-- saves unique note id to be stored in $stateParams as noteListid -->
         {{value.title}}
-        <!-- <button class="button button-clear" ng-click="deleteNote()" id="{{key}}"> Delete </button> -->
-
       </ion-content>
       </ion-item>
     </ion-list>
