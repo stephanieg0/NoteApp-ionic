@@ -12,6 +12,7 @@ angular.module('noteContentFactory', [])
 
   return {
     getAllNotes: function() {
+      notes = getNotesObj();
       return notes;
     },
     getNote: function(uniqueKey) {
@@ -21,6 +22,8 @@ angular.module('noteContentFactory', [])
     updateNote: function(uniqueKey, updatedNoteObj) {
       notes[uniqueKey] = updatedNoteObj;
       localStorage.setItem("notes", JSON.stringify(notes));
+      notes = getNotesObj();
+      console.log("local storage with new title:", notes);
     },
     setNotes: function(reducedNotesObj) {
       notes = reducedNotesObj;

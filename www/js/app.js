@@ -38,7 +38,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'noteContentFactory']
       views: {
         'menuContent': {
           templateUrl: 'templates/noteList.html',
-          controller: 'noteListCtrl'
+          controller: 'noteListCtrl',
+          reload: true
         }
       }
     })
