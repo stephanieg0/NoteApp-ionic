@@ -76,11 +76,12 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
 
-  $scope.SaveNote = function (noteText) {
+  $scope.SaveNote = function (noteText, title) {
     var noteInput = noteText;
-
+    var noteTitle = title;
     console.log("noteInput", noteInput);
     console.log("button works");
+    console.log("noteTitle", noteTitle);
 
 
     //setting the local storage with history object.

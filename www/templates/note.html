@@ -2,8 +2,9 @@
   <ion-content>
     <h3>Note Title</h3>
     <form>
+      <input placeholder="Note Title" id="noteTitle" ng-model="title">
       <textarea rows="20" cols="50" id="noteContent" placeholder="Text Area" ng-model="noteText"></textarea>
     </form>
-    <button id="save-note" ng-click="SaveNote(noteText)">save note</button>
+    <button id="save-note" ng-click="SaveNote(noteText, noteTitle)">save note</button>
   </ion-content>
 </ion-view>
