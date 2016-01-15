@@ -3,8 +3,14 @@ angular.module('noteContentFactory', [])
 
   var noteContent = '';
 
-  var notes = JSON.parse(localStorage.getItem("notes" || {}));
+  var getAllNotes = function() {
+    return JSON.parse(localStorage.getItem("notes" || {}));
+
+  }
+
+  var notes = getAllNotes()
   console.log("notes from factory:", notes);
+
 
   return {
     addContent: function(content) {

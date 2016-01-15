@@ -44,6 +44,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
 .controller('noteListCtrl', function($scope, noteContentFactory) {
   var newContent = noteContentFactory.getContent();
 
+
   //console.log("newContent", newContent);
 
   // var testNotes = {
@@ -61,6 +62,21 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
   $scope.noteListObject = noteContentFactory.getAllNotes();
   console.log("$scope.noteListObject", $scope.noteListObject);
+
+  $scope.addNote = function() {
+    console.log("you clicked on add note!");
+    console.log("uuid.v1:", uuid.v1());
+    var uniqueId = uuid.v1();
+    $scope.noteListObject[uniqueId] =
+    {
+      title: "Untitled",
+      content: "test content"
+    }
+
+    //creates new note object in local storage:
+    localStorage.setItem("notes", JSON.stringify($scope.noteListObject));
+
+  };
 
 })
 
@@ -82,6 +98,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
     noteContentFactory.addContent(noteInput);
 
   }
+
 
 
 });
