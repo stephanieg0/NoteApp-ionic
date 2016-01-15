@@ -1,0 +1,13 @@
+<ion-view view-title="Notes">
+  <ion-content>
+
+    <ion-list>
+      <ion-item ng-repeat="(key, value) in noteListObject">
+        {{value.title}}
+        <button class="button button-clear" ng-click="deleteNote()" id="{{key}}"> Delete </button>
+
+      </ion-content>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
