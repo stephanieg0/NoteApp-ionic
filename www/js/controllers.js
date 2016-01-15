@@ -42,7 +42,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
 })
 
 .controller('noteListCtrl', function($scope, noteContentFactory) {
-  var newContent = noteContentFactory.getContent();
+  // var newContent = noteContentFactory.getContent();
 
 
   $scope.noteListObject = noteContentFactory.getAllNotes();
@@ -66,8 +66,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
   //delete note:
 
   $scope.deleteNote = function() {
-    console.log("you clicked delete note!");
-    console.log("event.target.id", event.target.id);
+    //stores unique id of the note you clicked on:
     var noteId = event.target.id;
     delete $scope.noteListObject[noteId];
     noteContentFactory.setNotes($scope.noteListObject);
@@ -77,19 +76,23 @@ angular.module('starter.controllers', ["noteContentFactory"])
 })//end of controller.
 
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
+
+  //retrieving unique note id from $stateParams object specified in app.js:
   var uniqueNoteId = $stateParams.noteListid;
+  //using unique note id to retrieve complete note object
   $scope.note = noteContentFactory.getNote($stateParams.noteListid);
   console.log("$scope.note", $scope.note);
-
-
+  //storing note content
   $scope.noteText = $scope.note.content;
 
-
+  //listening for changes made to note content value
   $scope.$watch('noteText', function() {
     console.log("content changed!");
     console.log("noteText:", $scope.noteText);
+    //saving updated note content to note variable on the scope
     $scope.note.content = $scope.noteText;
     console.log("updated note object:", $scope.note);
+    //saving updated note content to local storage
     noteContentFactory.updateNote(uniqueNoteId, $scope.note);
   }, true)
 

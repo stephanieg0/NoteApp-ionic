@@ -1,40 +1,17 @@
 angular.module('noteContentFactory', [])
 .factory("noteContentFactory", [function () {
 
-  var noteContent = '';
+  //gets all notes from local storage. If no notes exists, returns empty object:
 
-  // var testNotes = {
-  //   "untitled1": {
-  //     title: "Untitled 1",
-  //     content: "sample content"
-  //   },
-  //   "untitled2": {
-  //     title: "Untitled 2",
-  //     content: "sample content 2"
-  //   }
-  // }
-
-  // localStorage.setItem("notes", JSON.stringify(testNotes));
-
-  var getAllNotes = function() {
+  var getNotesObj = function() {
     return JSON.parse(localStorage.getItem("notes" || {}));
-
   }
 
-  var notes = getAllNotes()
+  var notes = getNotesObj();
   console.log("notes from factory:", notes);
 
 
   return {
-    addContent: function(content) {
-      noteContent = content;
-      console.log("noteContent in Factory:", noteContent);
-      return noteContent;
-    },
-    getContent: function() {
-      console.log("noteContent in Factory:", noteContent);
-      return noteContent;
-    },
     getAllNotes: function() {
       return notes;
     },
@@ -49,7 +26,7 @@ angular.module('noteContentFactory', [])
       notes = reducedNotesObj;
       console.log("notes reduced:", notes);
       localStorage.setItem("notes", JSON.stringify(notes));
-      notes = getAllNotes();
+      notes = getNotesObj();
       console.log("newNotesObj from local storage:", notes);
 
     }
