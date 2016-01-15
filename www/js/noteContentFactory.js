@@ -44,6 +44,13 @@ angular.module('noteContentFactory', [])
     updateNote: function(uniqueKey, updatedNoteObj) {
       notes[uniqueKey] = updatedNoteObj;
       localStorage.setItem("notes", JSON.stringify(notes));
+    },
+    setNotes: function(reducedNotesObj) {
+      notes = reducedNotesObj;
+      console.log("notes reduced:", notes);
+      localStorage.setItem("notes", JSON.stringify(notes));
+      notes = getAllNotes();
+      console.log("newNotesObj from local storage:", notes);
 
     }
 

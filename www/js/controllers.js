@@ -45,21 +45,6 @@ angular.module('starter.controllers', ["noteContentFactory"])
   var newContent = noteContentFactory.getContent();
 
 
-  //console.log("newContent", newContent);
-
-  // var testNotes = {
-  //   "untitled1": {
-  //     title: "Untitled 1",
-  //     content: "sample content"
-  //   },
-  //   "untitled2": {
-  //     title: "Untitled 2",
-  //     content: "sample content 2"
-  //   }
-  // }
-
-  // localStorage.setItem("notes", JSON.stringify(testNotes));
-
   $scope.noteListObject = noteContentFactory.getAllNotes();
   console.log("$scope.noteListObject", $scope.noteListObject);
 
@@ -78,6 +63,17 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
   };
 
+  //delete note:
+
+  $scope.deleteNote = function() {
+    console.log("you clicked delete note!");
+    console.log("event.target.id", event.target.id);
+    var noteId = event.target.id;
+    delete $scope.noteListObject[noteId];
+    noteContentFactory.setNotes($scope.noteListObject);
+
+  }
+
 })
 
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
@@ -88,11 +84,6 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
   $scope.noteText = $scope.note.content;
 
-  // $scope.saveContent = function() {
-  //   console.log("content changed!");
-  //   console.log("note content:", $scope.noteText);
-  // }
-
 
   $scope.$watch('noteText', function() {
     console.log("content changed!");
@@ -101,33 +92,6 @@ angular.module('starter.controllers', ["noteContentFactory"])
     console.log("updated note object:", $scope.note);
     noteContentFactory.updateNote(uniqueNoteId, $scope.note);
   }, true)
-
-  // $scope.$watch('testTextArea', function() {
-  //   console.log("test text area changed");
-  // }, true)
-
-  // $scope.SaveNoteContent = function (noteText) {
-  //   $scope.note.content = noteText;
-  //   console.log("updated note object:", $scope.note);
-  //   noteContentFactory.updateNote(uniqueNoteId, $scope.note);
-
-  // }
-
-
-  // $scope.SaveNote = function (noteText) {
-  //   var noteInput = noteText;
-
-  //   console.log("noteInput", noteInput);
-  //   console.log("button works");
-
-
-  //   //setting the local storage with history object.
-  //   // localStorage.setItem('tempNote', JSON.stringify(testNotes));
-
-  //   noteContentFactory.addContent(noteInput);
-
-  // }
-
 
 
 });

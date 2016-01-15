@@ -42,6 +42,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'noteContentFactory']
         }
       }
     })
+    .state('app.deleteNotes', {
+      url: '/deleteNotes',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/deleteNotes.html',
+          controller: 'noteListCtrl'
+        }
+      }
+    })
 
   .state('app.single', {
     url: '/note/:noteListid',
