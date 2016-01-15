@@ -1,10 +1,5 @@
 This is an addon starter template for the [Ionic Framework](http://ionicframework.com/).
 
-Project uses node uuid to create unique id's for each note. Do the following to install note uuid plugin:
-
-1) run: npm install node-uuid --save
-2) include the following script tag above the ionic.bundle.js script tag in your index.html:
-  <script src="lib/node-uuid/uuid.js"></script>
 
 ## How to use this template
 
