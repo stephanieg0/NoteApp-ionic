@@ -58,7 +58,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
   //   }
   // }
 
-  //localStorage.setItem("notes", JSON.stringify(testNotes));
+  // localStorage.setItem("notes", JSON.stringify(testNotes));
 
   $scope.noteListObject = noteContentFactory.getAllNotes();
   console.log("$scope.noteListObject", $scope.noteListObject);
@@ -81,23 +81,52 @@ angular.module('starter.controllers', ["noteContentFactory"])
 })
 
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
-
+  var uniqueNoteId = $stateParams.noteListid;
   $scope.note = noteContentFactory.getNote($stateParams.noteListid);
   console.log("$scope.note", $scope.note);
 
-  $scope.SaveNote = function (noteText) {
-    var noteInput = noteText;
 
-    console.log("noteInput", noteInput);
-    console.log("button works");
+  $scope.noteText = $scope.note.content;
+
+  // $scope.saveContent = function() {
+  //   console.log("content changed!");
+  //   console.log("note content:", $scope.noteText);
+  // }
 
 
-    //setting the local storage with history object.
-    // localStorage.setItem('tempNote', JSON.stringify(testNotes));
+  $scope.$watch('noteText', function() {
+    console.log("content changed!");
+    console.log("noteText:", $scope.noteText);
+    $scope.note.content = $scope.noteText;
+    console.log("updated note object:", $scope.note);
+    noteContentFactory.updateNote(uniqueNoteId, $scope.note);
+  }, true)
 
-    noteContentFactory.addContent(noteInput);
+  // $scope.$watch('testTextArea', function() {
+  //   console.log("test text area changed");
+  // }, true)
 
-  }
+  // $scope.SaveNoteContent = function (noteText) {
+  //   $scope.note.content = noteText;
+  //   console.log("updated note object:", $scope.note);
+  //   noteContentFactory.updateNote(uniqueNoteId, $scope.note);
+
+  // }
+
+
+  // $scope.SaveNote = function (noteText) {
+  //   var noteInput = noteText;
+
+  //   console.log("noteInput", noteInput);
+  //   console.log("button works");
+
+
+  //   //setting the local storage with history object.
+  //   // localStorage.setItem('tempNote', JSON.stringify(testNotes));
+
+  //   noteContentFactory.addContent(noteInput);
+
+  // }
 
 
 

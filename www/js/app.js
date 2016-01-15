@@ -47,8 +47,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'noteContentFactory']
     url: '/note/:noteListid',
     views: {
       'menuContent': {
-        templateUrl: 'templates/note.html',
-        controller: 'noteCtrl'
+        templateUrl: 'templates/note.html'
+        //controller: 'noteCtrl'
       }
     }
   });
