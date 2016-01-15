@@ -1,9 +1,7 @@
 <ion-view view-title="note">
   <ion-content class="has-header" ng-controller="noteCtrl">
-    <h3>{{note.title}}</h3>
+    <textarea rows="1" cols="50" ng-model="noteTitle" class="title"></textarea>
     <form>
       <textarea rows="10" cols="50" id="noteContent" ng-model="noteText" ng-keypress="saveContent()"></textarea>
     </form>
-    <textarea ng-model="testTextArea">{{testTextArea}}</textarea>
-  </ion-content>
 </ion-view>

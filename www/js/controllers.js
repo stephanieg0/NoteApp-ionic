@@ -41,9 +41,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
   };
 })
 
-.controller('noteListCtrl', function($scope, noteContentFactory) {
-  // var newContent = noteContentFactory.getContent();
-
+.controller('noteListCtrl', function($scope, noteContentFactory, $state) {
 
   $scope.noteListObject = noteContentFactory.getAllNotes();
   console.log("$scope.noteListObject", $scope.noteListObject);
@@ -60,6 +58,11 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
     //creates new note object in local storage:
     localStorage.setItem("notes", JSON.stringify($scope.noteListObject));
+
+    $state.go('app.single', {url: "#/app/note/", noteListid: uniqueId});
+
+    // $location.path("#/app/note/" + uniqueId);
+        //$scope.$apply();
 
   };
 
@@ -85,6 +88,8 @@ angular.module('starter.controllers', ["noteContentFactory"])
   //storing note content
   $scope.noteText = $scope.note.content;
 
+  $scope.noteTitle = $scope.note.title;
+
   //listening for changes made to note content value
   $scope.$watch('noteText', function() {
     console.log("content changed!");
@@ -95,6 +100,19 @@ angular.module('starter.controllers', ["noteContentFactory"])
     //saving updated note content to local storage
     noteContentFactory.updateNote(uniqueNoteId, $scope.note);
   }, true)
+
+  $scope.$watch('noteTitle', function() {
+    console.log("you changed title!");
+    $scope.note.title = $scope.noteTitle;
+    console.log("updated note title:", $scope.note);
+
+    noteContentFactory.updateNote(uniqueNoteId, $scope.note);
+
+
+
+
+
+  })
 
 
 });
