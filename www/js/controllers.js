@@ -43,9 +43,11 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
 .controller('noteListCtrl', function($scope, noteContentFactory, $state) {
 
+  //get all notes stored in local storage at time controller is loaded:
   $scope.noteListObject = noteContentFactory.getAllNotes();
   console.log("$scope.noteListObject", $scope.noteListObject);
 
+  //create new note object with a unique id and save new note to local storage via noteContentFactory:
   $scope.addNote = function() {
     console.log("you clicked on add note!");
     console.log("uuid.v1:", uuid.v1());
@@ -59,7 +61,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
     //creates new note object in local storage:
     localStorage.setItem("notes", JSON.stringify($scope.noteListObject));
 
-    //after creating new note, load sigle note partial using new note's unique id:
+    //after creating new note (code above), load sigle note partial for the new note using new note's unique id, which is stored in $stateParams with the 'noteListid' key:
     $state.go('app.single', {url: "#/app/note/", noteListid: uniqueId});
   };
 
@@ -70,16 +72,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
     var noteId = event.target.id;
     delete $scope.noteListObject[noteId];
     noteContentFactory.setNotes($scope.noteListObject);
-
   }
-
-  // $scope.showUserTitle = function(title) {
-  //   console.log("title argument:", title);
-  //   if (title !== "") {
-  //     console.log("no title!");
-  //     return true;
-  //   };
-  // }
 
 })
 
@@ -107,6 +100,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
     noteContentFactory.updateNote(uniqueNoteId, $scope.note);
   }, true)
 
+  //listens for changes made to the note title and saves new title on each value change.
   $scope.$watch('noteTitle', function() {
     console.log("you changed title!");
     $scope.note.title = $scope.noteTitle;
