@@ -9,6 +9,19 @@ Project uses node uuid to create unique id's for each note. Do the following to 
 
 A starting project for Ionic that optionally supports using custom SCSS.
 
+##This project is available for ios and Android 5.0.0 and 5.0.1
+1. Add Android to ionic
+```$ ionic platform add android```
+1. Check cordova Android version or add cordova
+```$ cordova platform version android```
+1. Install Android SDK API 21 package
+```$ android```
+1. Make sure project.properties file has 'target=android-21'
+1. Compile Android code
+```$ ionic build android```
+1. Run Android
+```$ ionic run andriod```
+
 ## Using this project
 
 We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.

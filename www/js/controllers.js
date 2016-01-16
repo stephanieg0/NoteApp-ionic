@@ -74,7 +74,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
     noteContentFactory.setNotes($scope.noteListObject);
   }
 
-})
+})//end of controller.
 
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
 
