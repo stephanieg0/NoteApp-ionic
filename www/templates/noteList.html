@@ -7,13 +7,13 @@
     <ion-list>
       <ion-item ng-repeat="(key, value) in noteListObject" href="#/app/note/{{key}}" placeholder="Untitled" ng-model="noteText"> <!-- saves unique note id to be stored in $stateParams as noteListid -->
 
-      {{value.title}}
-        <!-- <div ng-if="value.title === '' ">
+      <!-- {{value.title}} -->
+        <div ng-if="value.title === '' ">
           Watchamacallit
         </div>
         <div ng-if="value.title !== '' ">
         {{value.title}}
-        </div> -->
+        </div>
       </ion-content>
       </ion-item>
     </ion-list>
