@@ -73,7 +73,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
   }
 
-})
+})//end of controller.
 
 .controller('noteCtrl', function($scope, $stateParams, noteContentFactory) {
 
