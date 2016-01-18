@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ["noteContentFactory"])
+angular.module('starter.controllers', ["noteContentFactory", "angular-toArrayFilter"])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,7 +41,8 @@ angular.module('starter.controllers', ["noteContentFactory"])
   };
 })
 
-.controller('noteListCtrl', function($scope, noteContentFactory, $state) {
+
+.controller('noteListCtrl', function($scope, noteContentFactory, $state, $filter) {
 
   $scope.noteListObject = noteContentFactory.getAllNotes();
   console.log("$scope.noteListObject", $scope.noteListObject);
@@ -61,9 +62,6 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
     $state.go('app.single', {url: "#/app/note/", noteListid: uniqueId});
 
-    // $location.path("#/app/note/" + uniqueId);
-        //$scope.$apply();
-
   };
 
   //delete note:
@@ -73,7 +71,6 @@ angular.module('starter.controllers', ["noteContentFactory"])
     var noteId = event.target.id;
     delete $scope.noteListObject[noteId];
     noteContentFactory.setNotes($scope.noteListObject);
-
   }
 
 })//end of controller.
@@ -107,10 +104,6 @@ angular.module('starter.controllers', ["noteContentFactory"])
     console.log("updated note title:", $scope.note);
 
     noteContentFactory.updateNote(uniqueNoteId, $scope.note);
-
-
-
-
 
   })
 

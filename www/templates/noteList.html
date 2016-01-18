@@ -1,11 +1,17 @@
 <ion-view view-title="Notes">
-  <ion-content class='has-header'>
+  <div class="bar has-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search" ng-model="search">
+    </label>
+  </div>
+  <ion-content class='has-subheader'>
   <div class="row">
     <button class="button button-clear" ng-click="addNote()">+</button>
     <a class="button button-clear" href="#/app/deleteNotes">Delete Notes</a> <!--loads delete notes partial on click -->
   </div>
     <ion-list>
-      <ion-item ng-repeat="(key, value) in noteListObject" href="#/app/note/{{key}}"> <!-- saves unique note id to be stored in $stateParams as noteListid -->
+      <ion-item ng-repeat="(key, value) in noteListObject | toArray | filter: search " href="#/app/note/{{key}}"> <!-- saves unique note id to be stored in $stateParams as noteListid -->
         {{value.title}}
       </ion-content>
       </ion-item>
