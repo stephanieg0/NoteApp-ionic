@@ -1,8 +1,7 @@
-<ion-view ng-controller="noteCtrl" view-title="{{note.title}}">
-  <ion-content class="has-header">
-    <h3 class="noteTitle">{{note.title}}</h3>
+<ion-view view-title="note">
+  <ion-content class="has-header" ng-controller="noteCtrl">
+    <textarea id="note-title" ng-model="noteTitle" class="title" Placeholder="Title"></textarea>
     <form>
       <textarea placeholder="Jot your thoughts..." id="noteContent" ng-model="noteText" ng-keypress="saveContent()"></textarea>
     </form>
-  </ion-content>
 </ion-view>
