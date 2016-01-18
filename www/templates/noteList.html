@@ -1,22 +1,27 @@
-
-<ion-view cache-view="false" view-title="Jotter" >
+<ion-view cache-view="false" view-title="Jotter">
 <!-- cache-view='false' above tells the notelist controller to reload when you hit the 'back' button from the note view -->
-  <ion-content class='has-header'>
+  <div class="bar has-header item-input-inset">
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search" ng-model="search">
+    </label>
+  </div>
+  <ion-content class='has-subheader'>
   <div class="row">
     <button class="button button-balanced" id="add-note" ng-click="addNote()">+</button>
     <a class="button button-clear" href="#/app/deleteNotes">Delete Notes</a> <!--loads delete notes partial on click -->
   </div>
     <ion-list>
-      <ion-item ng-repeat="(key, value) in noteListObject" href="#/app/note/{{key}}" placeholder="Untitled" ng-model="noteText"> <!-- saves unique note id to be stored in $stateParams as noteListid -->
+      <ion-item ng-repeat="(key, value) in noteListObject | toArray | filter: search " href="#/app/note/{{key}}" placeholder="whatchamacallit" ng-model="noteText"> <!-- saves unique note id to be stored in $stateParams as noteListid -->
 
       <!-- {{value.title}} -->
         <div ng-if="value.title === '' ">
-          Watchamacallit
+          whatchamacallit
         </div>
         <div ng-if="value.title !== '' ">
         {{value.title}}
         </div>
-      </ion-content>
+
       </ion-item>
     </ion-list>
   </ion-content>

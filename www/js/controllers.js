@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ["noteContentFactory"])
+angular.module('starter.controllers', ["noteContentFactory", "angular-toArrayFilter"])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
 
@@ -41,7 +41,8 @@ angular.module('starter.controllers', ["noteContentFactory"])
   };
 })
 
-.controller('noteListCtrl', function($scope, noteContentFactory, $state) {
+
+.controller('noteListCtrl', function($scope, noteContentFactory, $state, $filter) {
 
   //get all notes stored in local storage at time controller is loaded:
   $scope.noteListObject = noteContentFactory.getAllNotes();
@@ -63,6 +64,7 @@ angular.module('starter.controllers', ["noteContentFactory"])
 
     //after creating new note (code above), load sigle note partial for the new note using new note's unique id, which is stored in $stateParams with the 'noteListid' key:
     $state.go('app.single', {url: "#/app/note/", noteListid: uniqueId});
+
   };
 
   //delete note:
@@ -107,10 +109,6 @@ angular.module('starter.controllers', ["noteContentFactory"])
     console.log("updated note title:", $scope.note);
 
     noteContentFactory.updateNote(uniqueNoteId, $scope.note);
-
-
-
-
 
   })
 

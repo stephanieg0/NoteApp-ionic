@@ -7,6 +7,14 @@ Project uses node uuid to create unique id's for each note. Do the following to 
 1. include the following script tag above the ionic.bundle.js script tag in your index.html:
   ```<script src="lib/node-uuid/uuid.js"></script>```
 
+Project uses AngularJS toArray Filter. Do the following to install plugin: 
+
+1. run: bower install --save angular-toArrayFilter
+1. load the toArrayFilter.js file into your web app after loading angular.js
+  ```<script src="angular.js"></script>```
+  ```<script src="bower_components/angular-toArrayFilter/toArrayFilter.js"></script>```
+
+
 A starting project for Ionic that optionally supports using custom SCSS.
 
 ##This project is available for ios and Android 5.0.0 and 5.0.1
